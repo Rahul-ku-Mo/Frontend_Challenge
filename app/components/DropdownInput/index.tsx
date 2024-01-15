@@ -1,13 +1,12 @@
 "use client";
 import React, { useCallback, useState, useMemo } from "react";
-import users from "@/app/constant/MOCK_JSON.json";
-import Chip from "../Chip";
+import { User } from "@/app/types";
 
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-};
+import Chip from "../Chip";
+import ChipAvatar from "../Chip/ChipAvatar";
+
+import users from "@/app/constant/MOCK_JSON.json";
+import { joinedTag } from "@/app/utils/nameJoin";
 
 const DropdownInput: React.FC = () => {
   const customUsers: User[] = users.slice(-10);
@@ -65,8 +64,9 @@ const DropdownInput: React.FC = () => {
           <li
             key={user.id}
             onClick={() => handleUserClick(user)}
-            className="px-3 py-2 cursor-pointer hover:bg-emerald-800 text-emerald-100 text-sm flex gap-2 items-center"
+            className="p-2 m-1 rounded-lg cursor-pointer hover:bg-emerald-800 text-emerald-100 text-sm flex gap-2 items-center"
           >
+            <ChipAvatar avatarIcon={joinedTag(user)} />
             {user.name}
             <span className="text-xs font-light">{user.email}</span>
           </li>

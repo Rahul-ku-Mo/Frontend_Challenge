@@ -1,15 +1,17 @@
 "use client";
+import { User } from "@/app/types";
 
 import ChipAction from "./ChipAction";
 import ChipAvatar from "./ChipAvatar";
 import ChipLabel from "./ChipLabel";
-import { User } from "../DropdownInput/index";
+import { joinedTag } from "@/app/utils/nameJoin";
 
 type ChipProps = {
   user: User;
   lastBackspacedUser: User | null;
   handleUserSelect: (user: User) => void;
 };
+
 const Chip: React.FC<ChipProps> = ({
   handleUserSelect,
   user,
@@ -23,7 +25,7 @@ const Chip: React.FC<ChipProps> = ({
   return (
     <div className={chipClass}>
       <div className="flex items-center gap-2">
-        <ChipAvatar avatarIcon={user.name.slice(0, 1).toUpperCase()} />
+        <ChipAvatar avatarIcon={joinedTag(user)} />
         <ChipLabel value={user.name} />
       </div>
       <ChipAction user={user} handleClick={handleUserSelect} />

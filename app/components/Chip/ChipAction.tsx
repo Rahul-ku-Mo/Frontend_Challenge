@@ -1,5 +1,4 @@
-import { User } from "../DropdownInput/index";
-
+import { User } from "@/app/types";
 type ChipActionProps = {
   user: User;
   handleClick: (user: User) => void;
